@@ -19,7 +19,7 @@
 
 
 // FUNCTIONS + EVENTS
-$("addTrain").on("click", function() {
+$("#addTrain").on("click", function() {
 
   trainName = $('#nameInput').val().trim();
   destination = $('#destinationInput').val().trim();
