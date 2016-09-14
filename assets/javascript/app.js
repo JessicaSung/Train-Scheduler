@@ -14,7 +14,7 @@
 
 	var trainName = "";
 	var destination = "";
-	var firstTrainTime = 0;
+	var firstTrainTime = "";
 	var frequency = 0;
 
 
