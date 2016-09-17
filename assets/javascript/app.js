@@ -52,6 +52,18 @@ $("#addTrain").on("click", function() {
     firstTrainTime = snapshot.val().firstTrainTime;
     frequency = snapshot.val().frequency;
 
+    var firstTrainMoment = moment(firstTrainTime, 'HH:mm');
+    var nowMoment = moment(); // creates a moment object of current date and time and storing it in a variable whenever the user click the submit button
+
+
+    var minutesSinceFirstArrival = nowMoment.diff(firstTrainMoment, 'minutes');
+    var minutesSinceLastArrival = minutesSinceFirstArrival % frequency;
+    var minutesAway = frequency - minutesSinceLastArrival;
+    // moment.duration(millisecondsAway).asMinutes();
+
+    var nextArrival = nowMoment.add(minutesAway, 'minutes');
+    var formatNextArrival = nextArrival.format("HH:mm");
+
     // add table
     var tr = $('<tr>');
     var a = $('<td>');
@@ -62,8 +74,8 @@ $("#addTrain").on("click", function() {
     a.append(trainName);
     b.append(destination);
     c.append(frequency);
-    d.append("Next Arrival");
-    e.append("Minutes Away");
+    d.append(formatNextArrival);
+    e.append(minutesAway);
     tr.append(a).append(b).append(c).append(d).append(e);
     $('#newTrains').append(tr);
 
@@ -75,5 +87,17 @@ $("#addTrain").on("click", function() {
   
   });
 
+
+
+// testing out Tenor's suggestion
+// var time = moment('16:00', 'HH:mm')
+// console.log(time);
+
+// var now = moment();
+
+// time.diff(now);
+
+// time.toString();
+// time.fromNow();
 
 
